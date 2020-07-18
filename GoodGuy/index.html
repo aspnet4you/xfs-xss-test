@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/w3.css" />
+    <title>Trust me, I am a Good Guy!</title>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var email = getParameterByName("email");
+
+        if (email) {
+            var dynamicContent = document.getElementById("dynamicContent");
+            if (dynamicContent) {
+                dynamicContent.innerHTML = "<p>Thank you for registering with email address " + email + "<p/>";
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Demo of Cross Frame Scripting</h1>
+    <div>
+      <p>
+          This application (GoodGuy) is created to demo <a href="https://owasp.org/www-community/attacks/Cross_Frame_Scripting" target="_blank">Cross Frame Scripting</a>. Application is completely harmless.
+      </p>
+    </div>
+    <div>
+        <p>
+            Click this <a href="https://badguy.aspnet4you.com/login.html">login</a> page to see XFS in action.
+        </p>
+    </div>
+    <div id="dynamicContent">
+        
+    </div>
+    <br />
+    <p><a href="https://blogs.aspnet4you.com/about/" target="_blank">Terms & Privacy</a>.</p>
+</body>
+</html>
