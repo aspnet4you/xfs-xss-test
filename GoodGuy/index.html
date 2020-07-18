@@ -8,7 +8,7 @@
     <title>Trust me, I am a Good Guy!</title>
     <script>
         function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
+            if (!url) url = self.location.href;
             name = name.replace(/[\[\]]/g, '\\$&');
             var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
                 results = regex.exec(url);
@@ -37,7 +37,10 @@
     </div>
     <div>
         <p>
-            Click this <a href="https://badguy.aspnet4you.com/login.html">login</a> page to see XFS in action.
+            Click this <a href="https://badguy.aspnet4you.com/login.html">login</a> page to see XFS in action. X-FRAME-OPTIONS is set to SAMEORIGIN.
+        </p>
+        <p>
+            Click this <a href="https://badguy.aspnet4you.com/login2.html">login2</a> page to see XFS in action. Content-Security-Policy: frame-ancestors 'self' badguy.aspnet4you.com; script-src 'self' 'unsafe-inline' badguy.aspnet4you.com;.
         </p>
     </div>
     <div id="dynamicContent">
